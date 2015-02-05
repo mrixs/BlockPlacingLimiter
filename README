@@ -1,0 +1,29 @@
+Hello, everybody!
+It's readme for BlockPlacingLimiter, plugin for CraftBukkit(minecraft server).
+
+And now I'll tell you how to configure my plugin.
+
+Example:
+
+#   enable: true
+#   blocks:
+#     blocks:
+#     - 1
+#     - 2
+#     - 25
+#     - 50
+#     number:
+#     - 3
+#     - 5
+#     - 0
+#     - 7
+
+You can enable/disable plugin by setiing "enable" in first string to "true" or "false"
+Next you can set limits for various blocks. In that example
+block with ID = 1 has limit = 3,
+block with ID = 2 has limit = 5,
+block with ID = 25 has no limit (zero is unlimited),
+block with ID = 50 has limit = 7,
+other blocks are unlimited.
+
+!!! In this version it counts only blocks that has been placed or removed while plugin is enabled.

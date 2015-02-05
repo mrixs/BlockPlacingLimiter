@@ -1,0 +1,15 @@
+
+*.iml
+
+.idea/*
+
+build.xml
+
+out/*
+
+target/*
+BlockPlacingLimiter.iml
+
+src/main/resources/config.yml
+
+src/main/resources/config.yml
