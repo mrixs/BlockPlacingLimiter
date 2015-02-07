@@ -22,21 +22,22 @@ class DB {
 
     public static void CreateDB() throws SQLException {
         Statement statmt;
-        String request="CREATE TABLE if not exists 'placedLimitedBlocks' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'type' INTEGER , 'x' INTEGER, 'y' INTEGER, 'z' INTEGER, 'dimension' INTEGER);";
+        String request="CREATE TABLE if not exists 'placedLimitedBlocks' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'type' INTEGER , 'x' INTEGER, 'y' INTEGER, 'z' INTEGER, 'dimension' INTEGER, 'player' TEXT );";
         statmt = conn.createStatement();
         statmt.execute(request);
         System.out.println("BPL: Database (stores already placed blocks) created");
         statmt.close();
     }
 
-    public static void AddBlock(int x, int y, int z, int dimension, int blockid) throws SQLException {
-        String request = "INSERT INTO 'placedLimitedBlocks' ('type', 'x', 'y', 'z', 'dimension') " +
+    public static void AddBlock(int x, int y, int z, int dimension, int blockid, String playername) throws SQLException {
+                String request = "INSERT INTO 'placedLimitedBlocks' ('type', 'x', 'y', 'z', 'dimension','player') " +
                          "VALUES ("
                          + blockid + ","
                          + x + ","
                          + y + ","
                          + z + ","
-                         + dimension + ");";
+                         + dimension + ",'"
+                         + playername + "');";
         Statement statmt = conn.createStatement();
         statmt = conn.createStatement();
         statmt.execute(request);
@@ -57,9 +58,9 @@ class DB {
         statmt.close();
     }
 
-    public static int CountPlaced(int type) throws SQLException {
+    public static int CountPlaced(int type, String playername) throws SQLException {
         String request = "SELECT COUNT() FROM 'placedLimitedBlocks' " +
-                         "WHERE type=" + type + ";";
+                         "WHERE type=" + type + " AND player='"+playername+"';";
         ResultSet resSet;
         Statement statmt = conn.createStatement();
         resSet = statmt.executeQuery(request);

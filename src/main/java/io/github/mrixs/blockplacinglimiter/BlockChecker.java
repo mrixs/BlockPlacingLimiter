@@ -16,8 +16,8 @@ class BlockChecker{
         int limit = 0;
         boolean exit = false;
 
-        while (i < blocklist.size() && !exit) {                                                             //TODO: Used deprecated method of getting BlockID. Change it ASAP. List of deprecated: http://jd.bukkit.org/rb/doxygen/da/d58/deprecated.html
-            if (Integer.parseInt(blocklist.get(i).toString()) == blocktype.getId()) {
+        while (i < blocklist.size() && !exit) {
+            if (Integer.parseInt(blocklist.get(i).toString()) == blocktype.getId()) {                                   //TODO: Used deprecated method of getting BlockID. Change it ASAP. List of deprecated: http://jd.bukkit.org/rb/doxygen/da/d58/deprecated.html
                 limit = Integer.parseInt(blocklimitnum.get(i).toString());
                 exit=true;
             }

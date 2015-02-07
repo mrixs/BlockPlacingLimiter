@@ -34,10 +34,7 @@ class OnBlockPlace implements Listener{
         Block block = event.getBlockPlaced();
         placedBlockLimit = getBlockLimit(block.getType(), blockList, blockNum);
         if (placedBlockLimit>0) {
-
             DB database = new DB();
-
-
             try {
                 database.Conn();
             } catch (ClassNotFoundException e) {
@@ -51,18 +48,18 @@ class OnBlockPlace implements Listener{
                 e.printStackTrace();
             }
             try {
-                placedLimitedBlock = database.CountPlaced(block.getType().getId());
+                placedLimitedBlock = database.CountPlaced(block.getType().getId(),player.getName());                    //TODO: Used deprecated method of getting BlockID. Change it ASAP. List of deprecated: http://jd.bukkit.org/rb/doxygen/da/d58/deprecated.html
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            if (placedBlockLimit <= placedLimitedBlock & placedBlockLimit > 0) {
+            if (placedBlockLimit <= placedLimitedBlock & placedBlockLimit > 0) {                                        //If player can't place block
                 event.setCancelled(true);
                 player.sendMessage("You cannot place block \"" + block.getType().toString().toLowerCase().replace("_", " ") + "\". Limit is reached (" + placedLimitedBlock + "/" + placedBlockLimit + ")."); // Writes to player that he cannot place that block + name of block
             }
-            if (placedBlockLimit > placedLimitedBlock) {
+            if (placedBlockLimit > placedLimitedBlock) {                                                                //If player can place block
                 try {
-                    database.AddBlock(block.getX(), block.getY(), block.getZ(), block.getWorld().getUID().hashCode(), block.getType().getId());
+                    database.AddBlock(block.getX(), block.getY(), block.getZ(), block.getWorld().getUID().hashCode(), block.getType().getId(), player.getName());     //TODO: Used deprecated method of getting BlockID. Change it ASAP. List of deprecated: http://jd.bukkit.org/rb/doxygen/da/d58/deprecated.html
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
