@@ -36,18 +36,6 @@ class OnBlockPlace implements Listener{
         if (placedBlockLimit>0) {
             DB database = new DB();
             try {
-                database.Conn();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                database.CreateDB();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
                 placedLimitedBlock = database.CountPlaced(block.getType().getId(),player.getName());                    //TODO: Used deprecated method of getting BlockID. Change it ASAP. List of deprecated: http://jd.bukkit.org/rb/doxygen/da/d58/deprecated.html
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -64,11 +52,6 @@ class OnBlockPlace implements Listener{
                     e.printStackTrace();
                 }
                 player.sendMessage("You placed block \"" + block.getType().toString().toLowerCase().replace("_", " ") + "\", that is limited. Limit is " + placedBlockLimit + ". And you already placed " + (placedLimitedBlock+1)); // Writes to player that he placed tha block + name of block
-            }
-            try {
-                database.CloseDB();
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 

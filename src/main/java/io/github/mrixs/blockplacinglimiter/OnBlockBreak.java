@@ -32,33 +32,13 @@ class OnBlockBreak implements Listener{
         Player player = event.getPlayer();
         placedBlockLimit = getBlockLimit(block.getType(), blockList, blockNum);
         if (placedBlockLimit != 0){
-
           DB database = new DB();
-
-            try {
-                database.Conn();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                database.CreateDB();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
             try {
                 database.RemoveBlock(block.getX(), block.getY(), block.getZ(), block.getWorld().getUID().hashCode());
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            try {
-                database.CloseDB();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
             player.sendMessage("You removed block \"" + block.getType().toString().toLowerCase().replace("_", " ") + "\", that is limited. Limit is " + placedBlockLimit + "." );
-
         }
     }
 }

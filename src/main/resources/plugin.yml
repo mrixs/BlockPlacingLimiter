@@ -1,7 +1,10 @@
 name: BlockPlacingLimiter
 main: io.github.mrixs.blockplacinglimiter.BlockPlacingLimiter
-version: 0.0.3
+version: 0.0.4
 description: This plugin allows you to limit a number of some blocks (quarries, chunk loaders and other "laggy" machines) per player
 author: Vladimir "Mrixs" <mrixs@mrixs.ru>
 website: http://mrixs.ru
-
+commands:
+   bpl:
+      description: Shows your block limits
+      usage: /bpl count [<player>]

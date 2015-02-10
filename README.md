@@ -1,6 +1,12 @@
 # Block Placing Limiter
 It's a Bukkit server plugin.
 
+I've implemented a command which counts already placed blocks and limits.
+
+It is `/bpl count` for blocks placed by you
+and `/bpl count <player>` for blocks placed by `<player>`
+
+
 Now I'll tell you how to configure my plugin.
 
 **config.yml example:**

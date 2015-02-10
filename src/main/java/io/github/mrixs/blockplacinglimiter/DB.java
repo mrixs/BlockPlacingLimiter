@@ -39,7 +39,6 @@ class DB {
                          + dimension + ",'"
                          + playername + "');";
         Statement statmt = conn.createStatement();
-        statmt = conn.createStatement();
         statmt.execute(request);
         System.out.println("BPL: Placed block (" + x + "," + y + "," + z + ")");
         statmt.close();
@@ -52,7 +51,6 @@ class DB {
                         " AND z=" + z +
                         " AND dimension=" + dimension+";";
         Statement statmt = conn.createStatement();
-        statmt = conn.createStatement();
         statmt.execute(request);
         System.out.println("BPL: Removed block (" + x + "," + y + "," + z + ")");
         statmt.close();
